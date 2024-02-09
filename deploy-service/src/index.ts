@@ -1,4 +1,7 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import {createClient,commandOptions} from "redis";
+import { downS3Folder } from "./aws";
 
 const subscriber = createClient();
 
@@ -11,7 +14,11 @@ async function main(){
             'build-queue',
             0
         );
-        console.log(response);
+        //@ts-ignore
+        const id = (response.element);
+
+        await downS3Folder(`output/${id}`)
+        console.log("downloaded");
     }
 }
 
