@@ -7,8 +7,10 @@ import { generate } from "./utils";
 import path from "path";
 import { getAllFiles } from "./file";
 import { uploadFile } from './aws';
+import { createClient } from 'redis';
 
-
+const publisher = createClient();
+publisher.connect();
 
 
 const app = express();
@@ -29,6 +31,9 @@ app.post("/upload", async (req, res) => {
             const updatedPath = file.replace(/\\/g, '/');
             await uploadFile(updatedPath.slice(__dirname.length+1),updatedPath)
         });
+
+        publisher.lPush("build-queue",id)
+        
         res.status(200).json({id:id,message:"files uploaded successfully" });
         console.log(`upload for id-${id} completed`);
         
