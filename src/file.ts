@@ -20,3 +20,5 @@ export const getAllFiles = (folderPath:string)=>{
     
     return res;
 }
+
+// getAllFiles("dist/output/1kqac")

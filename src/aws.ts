@@ -9,7 +9,7 @@ const s3 = new S3({
 })
 
 export const uploadFile = async (filename:string,LocalFilePath:string)=>{
-    
+
     const fileContent = fs.readFileSync(LocalFilePath);
     const response = await s3.upload({
         Body:fileContent,
@@ -18,3 +18,5 @@ export const uploadFile = async (filename:string,LocalFilePath:string)=>{
     }).promise()
 
 }
+
+// uploadFile("output/3rsm2/tsconfig.node.json","dist/output/3rsm2/tsconfig.json")

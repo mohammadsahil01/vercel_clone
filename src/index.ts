@@ -7,14 +7,14 @@ import { generate } from "./utils";
 import path from "path";
 import { getAllFiles } from "./file";
 import { uploadFile } from './aws';
-// endpoint - https://c902e6e093d25333e8853a371b020dea.r2.cloudflarestorage.com
 
-// getAllFiles("dist/output/1kqac")
+
+
 
 const app = express();
 app.use(cors())
 app.use(express.json())
-// uploadFile("output/3rsm2/tsconfig.node.json","dist/output/3rsm2/tsconfig.json")
+
 
 
 app.post("/upload", async (req, res) => {
