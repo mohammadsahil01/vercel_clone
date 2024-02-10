@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 import {createClient,commandOptions} from "redis";
 import { downS3Folder } from "./aws";
+import { buildProject } from './uitls';
 
 const subscriber = createClient();
 
@@ -19,6 +20,9 @@ async function main(){
 
         await downS3Folder(`output/${id}`)
         console.log("downloaded");
+        await buildProject(id)
+        console.log("build successfully");
+        
     }
 }
 
